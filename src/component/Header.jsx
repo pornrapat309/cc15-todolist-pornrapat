@@ -1,5 +1,5 @@
-import {FaHome} from 'react-icons/fa';
 import './Header.scss';
+import {FaHome} from 'react-icons/fa';
 import Search from './Search'
 
 
