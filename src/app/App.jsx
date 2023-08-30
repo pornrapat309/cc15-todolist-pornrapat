@@ -1,5 +1,5 @@
 import './App.scss';
-import {FaCalendar, FaCalendarAlt, FaHome, FaInbox} from 'react-icons/fa';
+import {FaCalendar, FaCalendarAlt, FaChevronDown, FaHome, FaInbox} from 'react-icons/fa';
 import Header from '../component/Header';
 import Listitem from '../component/Listitem';
 
@@ -15,19 +15,35 @@ function App() {
               <ul className='list'>
                 <Listitem 
                 text='Inbox' 
-                icon={<FaInbox className='list__item__icon'/>}
+                icon={<FaInbox />}
+                active={true}
                 />
                 <Listitem 
                 text='Today' 
-                icon={<FaCalendar className='list__item__icon'/>}
+                icon={<FaCalendar />}
+                active={false}
                 />
                 <Listitem 
                 text='Next 7 days' 
-                icon={<FaCalendarAlt className='list__item__icon'/>}
+                icon={<FaCalendarAlt />}
+                active={false}
                 />
               </ul>
             </section>
-            <section className='sidebar_category'>2</section>
+            <section className='sidebar_category'>
+              <div className='accordion'>
+                <div className='accordion__toggle'>
+                  <li className='accordion__item'>
+                    <FaChevronDown className='accordion__item__icon accordion__item__active' />
+                    <p className='accordion__item__text'>Projects</p>
+                  </li>
+                  <ul className='list'>
+                    <Listitem text='A' icon={<FaInbox/>} active={true}/>
+                    <Listitem text='B' icon={<FaInbox/>} active={false}/>
+                  </ul>
+                </div>
+              </div>
+            </section>
           </aside>
         </div>
         <div classNAme="todo__content">TodoContent</div>
