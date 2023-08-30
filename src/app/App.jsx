@@ -5,6 +5,7 @@ import Listitem from '../component/Listitem';
 import Lists from '../component/Lists';
 import TodoHeader from '../component/Todo/TodoHeader';
 import TodoCreate from '../component/Todo/TodoCreate';
+import TodoLists from '../component/Todo/TodoLists';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
           <main className='todo__container'>
             <TodoHeader />
             <TodoCreate />
+            <TodoLists />
           </main>
 
         </div>
