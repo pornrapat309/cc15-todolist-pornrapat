@@ -3,6 +3,8 @@ import {FaCalendar, FaCalendarAlt, FaChevronDown, FaHome, FaInbox} from 'react-i
 import Header from '../component/Header';
 import Listitem from '../component/Listitem';
 import Lists from '../component/Lists';
+import TodoHeader from '../component/Todo/TodoHeader';
+import TodoCreate from '../component/Todo/TodoCreate';
 
 function App() {
 
@@ -40,7 +42,13 @@ function App() {
             </section>
           </aside>
         </div>
-        <div classNAme="todo__content">TodoContent</div>
+        <div classNAme="todo__content">
+          <main className='todo__container'>
+            <TodoHeader />
+            <TodoCreate />
+          </main>
+
+        </div>
     </div>
   );
 }
