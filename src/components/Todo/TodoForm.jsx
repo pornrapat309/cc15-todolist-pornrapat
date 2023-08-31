@@ -8,9 +8,12 @@ function TodoForm(props) {
 
   const handleSubmit = function (event) {
     event.preventDefault();
-    console.log('Submit')
     // setIsError(!isError);
   };
+
+  const handleCancel = function () {
+    props.setIsOpenForm(false);
+  }
 
   return (
     <form className={styles.todo__form__container}
@@ -23,7 +26,7 @@ function TodoForm(props) {
       <div className={styles.todo__form__footer}>
         {isError ? <p className={styles.todo__error}>Title is required</p> : null}
         <div className={styles.todo__form__buttons}>
-          <Button text='Cancel' active={false} type='button'/>
+          <Button text='Cancel' active={false} type='button' onClick={handleCancel}/>
           <Button text={props.textSubmit} active={true} type='submit'/>
         </div>
       </div>

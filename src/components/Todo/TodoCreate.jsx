@@ -17,7 +17,10 @@ function TodoCreate() {
   return (
     <>
     { isOpenFrom ? (
-      <TodoForm textSubmit='Add Task'/>
+      <TodoForm 
+      textSubmit='Add Task'
+      setIsOpenForm={setIsOpenForm}
+      />
     ) : (
       <div className={styles.todo__create}
       onClick={handleClick}
