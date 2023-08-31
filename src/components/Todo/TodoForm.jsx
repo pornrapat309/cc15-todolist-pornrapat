@@ -1,17 +1,30 @@
+import { useState } from 'react';
+import { Button } from '../Common/Button/Button';
 import styles from './TodoForm.module.scss';
 
-function TodoForm() {
+function TodoForm(props) {
+
+  const [isError, setIsError] = useState(true);
+
+  const handleSubmit = function (event) {
+    event.preventDefault();
+    console.log('Submit')
+    // setIsError(!isError);
+  };
+
   return (
-    <form className={styles.todo__form__container}>
+    <form className={styles.todo__form__container}
+    onSubmit={handleSubmit}
+    >
       {/*	Body */}
       <input className={styles.todo__form__input} placeholder='Task Name' />
 
       {/*Form Footer */}
       <div className={styles.todo__form__footer}>
-        <p className={styles.todo__error}>Title is required</p>
+        {isError ? <p className={styles.todo__error}>Title is required</p> : null}
         <div className={styles.todo__form__buttons}>
-          <button>Cancel</button>
-          <button>Add Task</button>
+          <Button text='Cancel' active={false} type='button'/>
+          <Button text={props.textSubmit} active={true} type='submit'/>
         </div>
       </div>
     </form>
