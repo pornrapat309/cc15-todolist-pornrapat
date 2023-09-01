@@ -37,7 +37,30 @@ function App() {
       status: false,
       due_date: dayjs().format('YYYY-MM-DD'),
     }
-    setAllTodo((p) => [newTodo, ...p])
+    setAllTodo((p) => [newTodo, ...p]);
+  }
+  
+  const deleteTodo = (todoId) => {
+    let foundIndex = allTodo.findIndex((todo) => todo.id === todoId);
+    if(foundIndex !== -1) {
+      const newTodoLists = [... allTodo];
+      newTodoLists.splice(foundIndex, 1);
+      setAllTodo(newTodoLists);
+    }
+  }
+
+  const editTodo = function(todoId, newTodoObj) {
+    let foundTodo = allTodo.find((todo) => todo.id === todoId);
+    if (!foundTodo) return;
+
+    const newTodo = Object.assign({}, foundTodo, newTodoObj);
+
+    let foundIndex = allTodo.findIndex((todo) => todo.id === todoId);
+    if (foundIndex === -1) return;
+
+    const newTodoLists = [... allTodo];
+    newTodoLists.splice(foundIndex, 1, newTodo);
+    setAllTodo(newTodoLists);
   }
 
   return (
@@ -52,11 +75,9 @@ function App() {
         <main className='todo__container'>
           <TodoHeader />
           <TodoCreate 
-          data={allTodo} 
-          setTodo={setAllTodo}
           addTodo={addTodo}
           />
-          <TodoLists data={allTodo}/>
+          <TodoLists data={allTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
         </main>
       </div>
     </div>

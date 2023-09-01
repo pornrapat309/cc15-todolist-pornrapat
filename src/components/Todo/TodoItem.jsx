@@ -5,13 +5,18 @@ import styles from './TodoItem.module.scss';
 import TodoForm from './TodoForm';
 
 function TodoItem(props) {
-    const {id, task, done, date} = props;
+    const {id, task, done, date, deleteTodo, editTodo} = props;
     const [isOpenForm, setIsOpenForm] = useState(false);
-    console.log(id);
-
+console.log(deleteTodo)
     const handleClick = function() {
-        setIsOpenForm(!isOpenForm);
+      setIsOpenForm(!isOpenForm);
       }
+    
+    const toggleStatus = () => {
+      const newTodoObj = {id, task, date, status: !done};
+      editTodo(id, newTodoObj);
+
+    }
 
       return (
         <>
@@ -19,11 +24,13 @@ function TodoItem(props) {
             <TodoForm 
             textSubmit='Edit Task'
             setIsOpenForm={setIsOpenForm}
+            editTodo={editTodo}
+            oldTodo={{id, task, done, date}}
             />
           ) : (
             <li className={styles.todo}>
             <div className={`${styles.todo__checkbox} ${done ? styles.todo__checkbox__done : ''}`}>
-                <HiOutlineCheck className={styles.todo__checkbox__icon} />
+                <HiOutlineCheck className={styles.todo__checkbox__icon} onClick={toggleStatus} />
             </div>
             <p className={`${styles.todo__task} ${done ? styles.todo__task__done : ''}`}>{task}</p>
             <span className={styles.todo__date}>{date}</span>
@@ -31,7 +38,7 @@ function TodoItem(props) {
                 <span onClick={handleClick}>
                 <FaPen className={styles.todo__edit} />
                 </span>
-                <span>
+                <span onClick={()=>deleteTodo(id)}>
                 <FaTrashAlt className={styles.todo__delete} />
                 </span>
             </div>
