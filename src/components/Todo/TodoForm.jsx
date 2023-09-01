@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import { Button } from '../Common/Button/Button';
 import styles from './TodoForm.module.scss';
 
@@ -15,16 +16,18 @@ function TodoForm(props) {
   const handleSubmit = function (event) {
     event.preventDefault();
     if(taskInput.trim() === '') {
-      console.log('Error');
       setIsError(true);
       return;
     }
-      console.log('Submit')
+      props.addTodo(taskInput);
+
+      props.setIsOpenForm(false);
   };
 
   const handleCancel = function () {
+
     props.setIsOpenForm(false);
-  }
+  };
 
   return (
     <form className={styles.todo__form__container}

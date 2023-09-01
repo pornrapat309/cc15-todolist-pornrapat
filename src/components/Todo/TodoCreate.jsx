@@ -6,7 +6,7 @@ import { Value } from 'sass';
 import styles from './TodoCreate.module.scss';
 import TodoForm from './TodoForm';
 
-function TodoCreate() {
+function TodoCreate(props) {
 
   const [isOpenFrom, setIsOpenForm] = useState(false);
 
@@ -20,6 +20,9 @@ function TodoCreate() {
       <TodoForm 
       textSubmit='Add Task'
       setIsOpenForm={setIsOpenForm}
+      data={props.data}
+      setTodo={props.setTodo}
+      addTodo={props.addTodo}
       />
     ) : (
       <div className={styles.todo__create}
