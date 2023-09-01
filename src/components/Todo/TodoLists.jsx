@@ -1,42 +1,36 @@
 import { useState } from 'react';
+import TodoItem from './TodoItem';
 import styles from './TodoLists.module.scss';
-import { FaTrashAlt, FaPen } from 'react-icons/fa';
-import { HiOutlineCheck } from 'react-icons/hi';
-import TodoForm from './TodoForm';
+
+const data = [
+  { "id": 1, "task": "Suspendisse potenti.", "status": false, "due_date": "2023-04-26" },
+    {
+        "id": 2,
+        "task": "In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
+        "status": false,
+        "due_date": "2023-05-08"
+    },
+    {
+        "id": 3,
+        "task": "Aenean fermentum. Donec ut mauris eget massa tempor convallis.",
+        "status": true,
+        "due_date": "2023-04-30"
+  },
+];
 
 function TodoLists() {
 
-  const [isOpenForm, setIsOpenForm] = useState(false);
-
-  const handleClick = function () {
-    setIsOpenForm(!isOpenForm);
-  }
+  const [allTodo, setAllTodo] = useState(data);
 
   return (
   <ul className={styles.todo__lists}>
-    { isOpenForm ? (
-      <TodoForm 
-      textSubmit='Edit Task'
-      setIsOpenForm={setIsOpenForm}
-      />
-    ) : (
-        <li className={styles.todo}>
-          <div className={styles.todo__checkbox}>
-            <HiOutlineCheck className={styles.todo__checkbox__icon} />
-          </div>
-          <p className={styles.todo__task}>todo-item 1 </p>
-          <span className={styles.todo__date}>30 Aug</span>
-          <div className={styles.todo__action}>
-            <span onClick={handleClick}>
-              <FaPen className={styles.todo__edit} />
-            </span>
-            <span>
-              <FaTrashAlt className={styles.todo__delete} />
-            </span>
-          </div>
-        </li>
-    )
-  }
+    {allTodo.map((todoObj) => (
+    <TodoItem 
+    key={todoObj.id} 
+    task={todoObj.task} 
+    done={todoObj.status} 
+    date={todoObj.due_date}
+    />))};
   </ul>
   );
 }
